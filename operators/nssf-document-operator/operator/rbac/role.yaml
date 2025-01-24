@@ -1,0 +1,35 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: nssf-document-role
+rules:
+- apiGroups:
+  - req.winlab.nycu
+  resources:
+  - nssfdocuments
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - req.winlab.nycu
+  resources:
+  - nssfdocuments/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - req.winlab.nycu
+  resources:
+  - nssfdocuments/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - ""
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]

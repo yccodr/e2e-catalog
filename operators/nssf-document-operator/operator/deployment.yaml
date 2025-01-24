@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nssf-document-operator
+  namespace: free5gc
+spec:
+  selector:
+    matchLabels:
+      control-plane: nssf-document-operator
+      app.kubernetes.io/name: nssf-document-operator
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        control-plane: nssf-document-operator
+        app.kubernetes.io/name: nssf-document-operator
+    spec:
+      serviceAccountName: nssf-document-operator
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - command:
+        - /manager
+        args:
+        - --leader-elect
+        - --health-probe-bind-address=:8081
+        image: harbor.winfra.cs.nycu.edu.tw/e2e-mano/nssf-document-operator:v0.1.0
+        name: nssf-document-operator
+        ports: []
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - "ALL"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        volumeMounts: []
+      volumes: []
+      terminationGracePeriodSeconds: 10
