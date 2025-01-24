@@ -11,4 +11,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: nssf-document-operator
-  namespace: free5gc
+  namespace: free5gc-nssf

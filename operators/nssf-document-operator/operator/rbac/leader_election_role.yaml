@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  namespace: free5gc
+  namespace: free5gc-nssf
   labels:
     app.kubernetes.io/name: nssf-document-operator
   name: leader-election-role-nssf-document
