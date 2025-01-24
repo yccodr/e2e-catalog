@@ -1,0 +1,118 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.17.0
+  name: nftopologies.req.winlab.nycu
+spec:
+  group: req.winlab.nycu
+  names:
+    kind: NFTopology
+    listKind: NFTopologyList
+    plural: nftopologies
+    singular: nftopology
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: NFTopology is the Schema for the nftopologies API.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: NFTopologySpec defines the desired state of NFTopology.
+            properties:
+              nfInstances:
+                description: |-
+                  INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
+                  Important: Run "make" to regenerate code after modifying this file
+                items:
+                  properties:
+                    cluster:
+                      description: Specifies the matching labels for the NF instance to be instantiated
+                      type: string
+                    name:
+                      type: string
+                    nfTemplate:
+                      description: Specifies the template of the NF to be deployed when a cluster matches
+                      properties:
+                        capacity:
+                          properties:
+                            maxDownlinkThroughput:
+                              type: integer
+                            maxNFConnections:
+                              type: integer
+                            maxSessions:
+                              type: integer
+                            maxSubscribers:
+                              type: integer
+                            maxUplinkThroughput:
+                              type: integer
+                          type: object
+                        nfType:
+                          type: string
+                        packageRef:
+                          properties:
+                            packageName:
+                              type: string
+                            repository:
+                              type: string
+                            revision:
+                              type: string
+                          type: object
+                        sliceInfo:
+                          properties:
+                            sd:
+                              pattern: ^[0-9a-f]{6}$
+                              type: string
+                            sst:
+                              maximum: 127
+                              minimum: 0
+                              type: integer
+                          type: object
+                      type: object
+                  type: object
+                type: array
+            type: object
+          status:
+            description: NFTopologyStatus defines the observed state of NFTopology.
+            properties:
+              packageVariants:
+                description: List of created Package Variants
+                items:
+                  properties:
+                    name:
+                      description: Name of the package variant
+                      type: string
+                    ready:
+                      default: false
+                      type: boolean
+                  required:
+                  - name
+                  - ready
+                  type: object
+                type: array
+              state:
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
