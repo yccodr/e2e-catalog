@@ -4,7 +4,7 @@ kind: ConfigMap
 metadata:
   name: udr-configmap
   labels:
-    app.kubernetes.io/version: "v3.1.1"
+    app.kubernetes.io/version: "v3.2.1"
     app: free5gc
 data:
   udrcfg.yaml: |

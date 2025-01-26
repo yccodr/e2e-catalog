@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: udm-nudm
   labels:
-    app.kubernetes.io/version: "v3.1.1"
+    app.kubernetes.io/version: "v3.2.1"
     project: free5gc
     nf: udm
 spec:

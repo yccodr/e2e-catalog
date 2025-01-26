@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: free5gc-nssf
   labels:
-    app.kubernetes.io/version: "v3.1.1"
+    app.kubernetes.io/version: "v3.2.1"
     project: free5gc
     nf: nssf
 spec:
@@ -29,7 +29,7 @@ spec:
 
       containers:
       - name: nssf
-        image: towards5gs/free5gc-nssf:v3.1.1
+        image: towards5gs/free5gc-nssf:v3.2.1
         imagePullPolicy: IfNotPresent
         securityContext:
             {}
