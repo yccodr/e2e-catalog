@@ -46,8 +46,6 @@ data:
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
               nsiId: 12
-            - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
-              nsiId: 12
         - snssai:
             sst: 1
             sd: 3
@@ -55,16 +53,41 @@ data:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
               nsiId: 13
         - snssai:
-            sst: 2
+            sst: 1
+            sd: 4
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
-              nsiId: 20
+              nsiId: 14
         - snssai:
-            sst: 2
-            sd: 1
+            sst: 1
+            sd: 5
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
-              nsiId: 21
+              nsiId: 15
+        - snssai:
+            sst: 1
+            sd: 6
+          nsiInformationList:
+            - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
+              nsiId: 16
+        - snssai:
+            sst: 1
+            sd: 7
+          nsiInformationList:
+            - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
+              nsiId: 17
+        - snssai:
+            sst: 1
+            sd: 8
+          nsiInformationList:
+            - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
+              nsiId: 18
+        - snssai:
+            sst: 1
+            sd: 9
+          nsiInformationList:
+            - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
+              nsiId: 19
         - snssai:
             sst: 1
             sd: 010203
@@ -142,11 +165,23 @@ data:
             - sst: 1
               sd: 112233
             - sst: 1
-              sd: 3
-            - sst: 2
               sd: 1
-            - sst: 2
+            - sst: 1
               sd: 2
+            - sst: 1
+              sd: 3
+            - sst: 1
+              sd: 4
+            - sst: 1
+              sd: 5
+            - sst: 1
+              sd: 6
+            - sst: 1
+              sd: 7
+            - sst: 1
+              sd: 8
+            - sst: 1
+              sd: 9     
       amfList:
         - nfId: 469de254-2fe5-4ca0-8381-af3f500af77c
           supportedNssaiAvailabilityData:
