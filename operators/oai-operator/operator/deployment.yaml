@@ -19,7 +19,7 @@ spec:
       serviceAccountName: oai-ran-operator
       containers:
       - name: operator
-        image: harbor.winfra.cs.nycu.edu.tw/e2e-mano/oai-operator:v0.1.5
+        image: harbor.winfra.cs.nycu.edu.tw/e2e-mano/oai-operator:v0.1.13
         resources:
           limits:
             cpu: 500m
