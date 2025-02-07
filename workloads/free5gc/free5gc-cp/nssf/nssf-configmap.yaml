@@ -1,4 +1,3 @@
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -36,55 +35,55 @@ data:
               nsiId: 10
         - snssai:
             sst: 1
-            sd: 1
+            sd: 000001
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
               nsiId: 11
         - snssai:
             sst: 1
-            sd: 2
+            sd: 000002
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
               nsiId: 12
         - snssai:
             sst: 1
-            sd: 3
+            sd: 000003
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
               nsiId: 13
         - snssai:
             sst: 1
-            sd: 4
+            sd: 000004
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
               nsiId: 14
         - snssai:
             sst: 1
-            sd: 5
+            sd: 000005
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
               nsiId: 15
         - snssai:
             sst: 1
-            sd: 6
+            sd: 000006
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
               nsiId: 16
         - snssai:
             sst: 1
-            sd: 7
+            sd: 000007
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
               nsiId: 17
         - snssai:
             sst: 1
-            sd: 8
+            sd: 000008
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
               nsiId: 18
         - snssai:
             sst: 1
-            sd: 9
+            sd: 000009
           nsiInformationList:
             - nrfId: http://nrf-nnrf:8000/nnrf-nfm/v1/nf-instances
               nsiId: 19
@@ -163,25 +162,25 @@ data:
             - sst: 1
               sd: 010203
             - sst: 1
-              sd: 112233
+              sd: 000001
             - sst: 1
-              sd: 1
+              sd: 000002
             - sst: 1
-              sd: 2
+              sd: 000003
             - sst: 1
-              sd: 3
+              sd: 000004
             - sst: 1
-              sd: 4
+              sd: 000005
             - sst: 1
-              sd: 5
+              sd: 000006
             - sst: 1
-              sd: 6
+              sd: 000007
             - sst: 1
-              sd: 7
+              sd: 000008
             - sst: 1
-              sd: 8
+              sd: 000009
             - sst: 1
-              sd: 9     
+              sd: 000010    
       amfList:
         - nfId: 469de254-2fe5-4ca0-8381-af3f500af77c
           supportedNssaiAvailabilityData:
