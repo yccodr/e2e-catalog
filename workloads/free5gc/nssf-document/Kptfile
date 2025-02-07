@@ -1,0 +1,14 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: nssf-document
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: sample description
+# pipeline:
+#   mutators:
+#     - configMap:
+#         sd: "000001"
+#         sst: 1
+#       image: gcr.io/kpt-fn/apply-setters:v0.2.0

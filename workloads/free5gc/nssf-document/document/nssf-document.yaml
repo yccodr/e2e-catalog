@@ -1,0 +1,14 @@
+apiVersion: req.winlab.nycu/v1alpha1
+kind: NSSFDocument
+metadata:
+  name: document # kpt-set: ${sd}
+  namespace: free5gc-cp
+spec:
+  snssaiList:
+    - sst: 1 # kpt-set: ${sst}
+      sd: "010203" # kpt-set: ${sd}
+  tai:
+    plmnId:
+      mcc: "208"
+      mnc: "93"
+    tac: "1"
