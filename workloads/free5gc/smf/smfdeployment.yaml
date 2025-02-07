@@ -1,0 +1,7 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFDeployment
+metadata:
+  name: smf-1-ffffff
+  namespace: smf-1-ffffff
+spec:
+  provider: smf.free5gc.io

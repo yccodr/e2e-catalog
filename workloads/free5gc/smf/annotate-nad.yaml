@@ -1,0 +1,17 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: StarlarkRun
+metadata:
+  name: add-annotation-to-network-attachment-definition
+params:
+  annotationToAdd:
+    config.kubernetes.io/local-config: "true"
+source: |-
+  annotation_to_add = ctx.resource_list["functionConfig"]["params"]["annotationToAdd"]
+  for resource in ctx.resource_list["items"]:
+    if resource.get("kind") == "NetworkAttachmentDefinition":
+      if "metadata" not in resource:
+        resource["metadata"] = {}
+      if "annotations" not in resource["metadata"]:
+        resource["metadata"]["annotations"] = {}
+      for key, value in annotation_to_add.items():
+        resource["metadata"]["annotations"][key] = value

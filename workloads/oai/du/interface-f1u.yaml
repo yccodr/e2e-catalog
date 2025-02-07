@@ -1,0 +1,14 @@
+apiVersion: req.nephio.org/v1alpha1
+kind: Interface
+metadata:
+  name: f1u
+  annotations:
+    nephio.org/network-name: f1u
+    config.kubernetes.io/local-config: "true"
+    specializer.nephio.org/owner: workload.nephio.org/v1alpha1.NFDeployment.du-1-ffffff
+    specializer.nephio.org/namespace: example
+spec:
+  networkInstance:
+    name: f1u
+  cniType: macvlan
+  attachmentType: none

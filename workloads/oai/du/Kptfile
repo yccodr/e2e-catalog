@@ -1,0 +1,23 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: pkg-du
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: example cucp blueprint package
+pipeline:
+  mutators:
+  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    configPath: apply-replacements-sst.yaml
+  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    configPath: apply-replacements-sd.yaml
+  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    configPath: apply-replacements-namespace.yaml
+  - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+    configPath: package-context.yaml
+  - image: docker.io/justin89721/nfdeploy-fn-no-vlan:latest
+  - image: docker.io/nephio/interface-fn:latest
+  - image: docker.io/nephio/nad-fn:latest
+  - image: docker.io/nephio/interface-fn:latest
+  - image: docker.io/justin89721/nfdeploy-fn-no-vlan:latest

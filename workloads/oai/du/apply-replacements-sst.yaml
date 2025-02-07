@@ -1,0 +1,37 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: ApplyReplacements
+metadata:
+  name: propagate-name-sst
+  annotations:
+    config.kubernetes.io/local-config: "true"
+replacements:
+- source:
+    kind: ConfigMap
+    name: slice-info
+    fieldPath: data.sst
+  targets:
+  - select:
+      kind: NFDeployment
+    fieldPaths:
+    - metadata.name
+    options:
+      delimiter: '-'
+      index: 1
+  - select:
+      kind: Interface
+    fieldPaths:
+    - metadata.annotations.[specializer.nephio.org/owner]
+    options:
+      delimiter: '-'
+      index: 1
+  - select:
+      kind: Dependency
+    fieldPaths:
+    - metadata.annotations.[specializer.nephio.org/owner]
+    options:
+      delimiter: '-'
+      index: 1
+  - select:
+      kind: NFConfig
+    fieldPaths:
+    - spec.configRefs.1.spec.PLMNInfo.0.nssai.0.sst

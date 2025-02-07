@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: slice-info
+data:
+  sst: "1" # kpt-set: ${sst}
+  sd: "ffffff" # kpt-set: ${sd}
