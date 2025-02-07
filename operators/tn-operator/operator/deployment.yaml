@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tn-operator
+  namespace: tn
+spec:
+  selector:
+    matchLabels:
+      control-plane: tn-operator
+      app.kubernetes.io/name: tn-operator
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        control-plane: tn-operator
+        app.kubernetes.io/name: tn-operator
+    spec:
+      serviceAccountName: tn-operator
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - command:
+        - /manager
+        args:
+        - --leader-elect
+        - --health-probe-bind-address=:8081
+        image: harbor.winfra.cs.nycu.edu.tw/e2e-mano/tn-operator:v0.1.0
+        name: tn-operator
+        ports: []
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - "ALL"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        volumeMounts: []
+      volumes: []
+      terminationGracePeriodSeconds: 10
