@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tn-manager
+  namespace: tn-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tn-manager
+  template:
+    metadata:
+      labels:
+        app: tn-manager
+    spec:
+      hostNetwork: true
+      hostPID: true
+      containers:
+      - name: server
+        image: harbor.winfra.cs.nycu.edu.tw/e2e-mano/tn-manager:v0.5.0
+        command: ["./TN-Manager", "--port", "8081"]
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: lib-modules
+          mountPath: /lib/modules
+        - name: host-netns
+          mountPath: /var/run/netns
+        ports:
+        - containerPort: 8081
+          #env:
+          #- name: ENV 
+          #  value: "PRODUCTION"
+      volumes:
+      - name: lib-modules
+        hostPath:
+          path: /lib/modules
+      - name: host-netns
+        hostPath:
+          path: /var/run/netns
