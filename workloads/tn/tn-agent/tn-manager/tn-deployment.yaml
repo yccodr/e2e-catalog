@@ -26,6 +26,7 @@ spec:
           mountPath: /lib/modules
         - name: host-netns
           mountPath: /var/run/netns
+          mountPropagation: Bidirectional
         ports:
         - containerPort: 8081
           #env:
