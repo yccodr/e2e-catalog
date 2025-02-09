@@ -2,6 +2,8 @@ apiVersion: fn.kpt.dev/v1alpha1
 kind: StarlarkRun
 metadata:
   name: add-annotation-to-network-attachment-definition
+  annotations:
+    config.kubernetes.io/local-config: "true"
 params:
   annotationToAdd:
     config.kubernetes.io/local-config: "true"
