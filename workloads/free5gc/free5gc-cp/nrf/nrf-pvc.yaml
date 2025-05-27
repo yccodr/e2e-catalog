@@ -8,8 +8,8 @@ spec:
   selector:
     matchLabels:
       project: free5gc
-    accessModes:
-      - ReadWriteMany
-    resources:
-      requests:
-        storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
