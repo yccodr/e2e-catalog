@@ -39,7 +39,7 @@ spec:
           ports:
             - containerPort: 80
           command: ["./udr"]
-          args: ["-c", "../config/udrcfg.yaml"]
+          args: ["-c", "./config/udrcfg.yaml"]
           env:
             - name: DB_URI
               value: mongodb://mongodb/free5gc
@@ -48,6 +48,10 @@ spec:
           volumeMounts:
             - mountPath: /free5gc/config/
               name: udr-volume
+            - mountPath: /free5gc/config/TLS
+              name: udr-empty-volume
+            - mountPath: /free5gc/cert
+              name: udr-cert-pvc
           resources:
             limits:
               cpu: 100m

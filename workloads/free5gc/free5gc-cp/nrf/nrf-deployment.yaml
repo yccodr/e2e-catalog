@@ -39,7 +39,7 @@ spec:
           ports:
             - containerPort: 8000
           command: ["./nrf"]
-          args: ["-c", "../config/nrfcfg.yaml"]
+          args: ["-c", "./config/nrfcfg.yaml"]
           env:
             - name: DB_URI
               value: mongodb://mongodb/free5gc
@@ -48,6 +48,10 @@ spec:
           volumeMounts:
             - mountPath: /free5gc/config/
               name: nrf-volume
+            - mountPath: /free5gc/config/TLS
+              name: nrf-empty-volume
+            - mountPath: /free5gc/cert
+              name: nrf-cert-pvc
           resources:
             limits:
               cpu: 100m

@@ -39,13 +39,17 @@ spec:
           ports:
             - containerPort: 80
           command: ["./udm"]
-          args: ["-c", "../config/udmcfg.yaml"]
+          args: ["-c", "./config/udmcfg.yaml"]
           env:
             - name: GIN_MODE
               value: release
           volumeMounts:
             - mountPath: /free5gc/config/
               name: udm-volume
+            - mountPath: /free5gc/config/TLS
+              name: udm-empty-volume
+            - mountPath: /free5gc/cert
+              name: udm-cert-pvc
           resources:
             limits:
               cpu: 100m

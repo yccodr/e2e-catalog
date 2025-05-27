@@ -47,6 +47,10 @@ spec:
           volumeMounts:
             - mountPath: /free5gc/config/
               name: nssf-volume
+            - mountPath: /free5gc/config/TLS
+              name: nssf-empty-volume
+            - mountPath: /free5gc/cert
+              name: nssf-cert-pvc
           resources:
             limits:
               cpu: 100m

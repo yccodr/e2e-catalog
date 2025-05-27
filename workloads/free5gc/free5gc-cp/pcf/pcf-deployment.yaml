@@ -39,13 +39,17 @@ spec:
           ports:
             - containerPort: 80
           command: ["./pcf"]
-          args: ["-c", "../config/pcfcfg.yaml"]
+          args: ["-c", "./config/pcfcfg.yaml"]
           env:
             - name: GIN_MODE
               value: release
           volumeMounts:
             - mountPath: /free5gc/config/
               name: pcf-volume
+            - mountPath: /free5gc/config/TLS
+              name: pcf-empty-volume
+            - mountPath: /free5gc/cert
+              name: pcf-cert-pvc
           resources:
             limits:
               cpu: 100m

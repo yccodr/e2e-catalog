@@ -40,13 +40,17 @@ spec:
           ports:
             - containerPort: 80
           command: ["./ausf"]
-          args: ["-c", "../config/ausfcfg.yaml"]
+          args: ["-c", "./config/ausfcfg.yaml"]
           env:
             - name: GIN_MODE
               value: release
           volumeMounts:
             - mountPath: /free5gc/config/
               name: ausf-volume
+            - mountPath: /free5gc/config/TLS
+              name: ausf-empty-volume
+            - mountPath: /free5gc/cert
+              name: ausf-cert-pvc
           resources:
             limits:
               cpu: 100m
