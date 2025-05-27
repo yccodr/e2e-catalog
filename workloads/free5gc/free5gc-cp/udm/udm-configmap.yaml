@@ -4,12 +4,12 @@ kind: ConfigMap
 metadata:
   name: udm-configmap
   labels:
-    app.kubernetes.io/version: "v3.2.1"
+    app.kubernetes.io/version: "v4.0.1"
     app: free5gc
 data:
   udmcfg.yaml: |
     info:
-      version: 1.0.2
+      version: 1.0.3
       description: UDM initial local configuration
 
     configuration:
@@ -26,8 +26,8 @@ data:
         bindingIPv4: 0.0.0.0  # IP used to bind the service
         port: 80
         tls:
-          key: config/TLS/udm.key
-          pem: config/TLS/udm.pem
+          key: config/udm.key
+          pem: config/udm.pem
       
       nrfUri: http://nrf-nnrf:8000
       # test data set from TS33501-f60 Annex C.4
@@ -40,6 +40,6 @@ data:
           PublicKey: 0472DA71976234CE833A6907425867B82E074D44EF907DFB4B3E21C1C2256EBCD15A7DED52FCBB097A4ED250E036C7B9C8C7004C4EEDC4F068CD7BF8D3F900E3B4
 
     logger:
-      UDM:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false

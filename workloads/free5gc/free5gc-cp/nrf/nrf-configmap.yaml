@@ -4,14 +4,14 @@ kind: ConfigMap
 metadata:
   name: nrf-configmap
   labels:
-    app.kubernetes.io/version: "v3.2.1"
+    app.kubernetes.io/version: "v4.0.1"
     app: free5gc
 data:
   nrfcfg.yaml: |
     info:
-      version: 1.0.1
+      version: 1.0.2
       description: NRF initial local configuration
-    
+
     configuration:
       MongoDBName: free5gc
       MongoDBUrl: mongodb://mongodb:27017
@@ -25,14 +25,17 @@ data:
         registerIPv4: nrf-nnrf  # IP used to serve NFs or register to another NRF
         bindingIPv4: 0.0.0.0    # IP used to bind the service
         port: 8000
-        tls:
-          key: config/TLS/nrf.key
-          pem: config/TLS/nrf.pem
+        cert:
+          pem: config/nrf.pem
+          key: config/nrf.key
+        rootCert:
+          pem: config/root.pem
+          key: config/root.key
       DefaultPlmnId:
         mcc: 208
         mnc: 93
 
     logger:
-      NRF:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false

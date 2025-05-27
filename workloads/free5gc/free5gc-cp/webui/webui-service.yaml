@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: webui-service
   labels:
-    app.kubernetes.io/version: "v3.2.1"
+    app.kubernetes.io/version: "v4.0.1"
     project: free5gc
     nf: webui
 spec:

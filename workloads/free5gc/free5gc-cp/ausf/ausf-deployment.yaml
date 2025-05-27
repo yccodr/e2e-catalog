@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: free5gc-ausf
   labels:
-    app.kubernetes.io/version: "v3.2.1"
+    app.kubernetes.io/version: "v4.0.1"
     project: free5gc
     nf: ausf
 spec:
@@ -20,30 +20,34 @@ spec:
         nf: ausf
     spec:
       initContainers:
-      - name: wait-nrf
-        image: towards5gs/initcurl:1.0.0
-        env:
-        - name: DEPENDENCIES
-          value: http://nrf-nnrf:8000
-        command: ['sh', '-c', 'set -x; for dependency in $DEPENDENCIES; do while [ $(curl --insecure --connect-timeout 1 -s -o /dev/null -w "%{http_code}" $dependency) -ne 200 ]; do echo waiting for dependencies; sleep 1; done; done;']
-      
+        - name: wait-nrf
+          image: towards5gs/initcurl:1.0.0
+          env:
+            - name: DEPENDENCIES
+              value: http://nrf-nnrf:8000
+          command:
+            [
+              "sh",
+              "-c",
+              'set -x; for dependency in $DEPENDENCIES; do while [ $(curl --insecure --connect-timeout 1 -s -o /dev/null -w "%{http_code}" $dependency) -ne 200 ]; do echo waiting for dependencies; sleep 1; done; done;',
+            ]
+
       containers:
-      - name: ausf
-        image: towards5gs/free5gc-ausf:v3.2.1
-        imagePullPolicy: IfNotPresent
-        securityContext:
-            {}
-        ports:
-        - containerPort: 80
-        command: ["./ausf"]
-        args: ["-c", "../config/ausfcfg.yaml"]
-        env:
-          - name: GIN_MODE
-            value: release
-        volumeMounts:
-        - mountPath: /free5gc/config/
-          name: ausf-volume
-        resources:
+        - name: ausf
+          image: free5gc/ausf:v4.0.1
+          imagePullPolicy: IfNotPresent
+          securityContext: {}
+          ports:
+            - containerPort: 80
+          command: ["./ausf"]
+          args: ["-c", "../config/ausfcfg.yaml"]
+          env:
+            - name: GIN_MODE
+              value: release
+          volumeMounts:
+            - mountPath: /free5gc/config/
+              name: ausf-volume
+          resources:
             limits:
               cpu: 100m
               memory: 128Mi
@@ -54,8 +58,13 @@ spec:
       restartPolicy: Always
 
       volumes:
-      - name: ausf-volume
-        projected:
-          sources:
-          - configMap:
-              name: ausf-configmap
+        - name: ausf-volume
+          projected:
+            sources:
+              - configMap:
+                  name: ausf-configmap
+        - name: ausf-empty-volume
+          emptyDir: {}
+        - name: ausf-cert-pvc
+          persistentVolumeClaim:
+            claimName: cert-pvc

@@ -4,20 +4,39 @@ kind: ConfigMap
 metadata:
   name: webui-configmap
   labels:
-    app.kubernetes.io/version: "v3.2.1"
+    app.kubernetes.io/version: "v4.0.1"
     app: free5gc
 data:
   webuicfg.yaml: |
     info:
-      version: 1.0.0
+      version: 1.0.3
       description: WEBUI initial local configuration
 
     configuration:
       mongodb:
         name: free5gc
         url: mongodb://mongodb:27017
+
+      nrfUri: http://nrf-nnrf:8000
+      webServer:
+        scheme: http
+        ipv4Address: 0.0.0.0
+        port: 5000
+
+      billingServer:
+        enable: true
+        hostIPv4: 0.0.0.0
+        listenPort: 2121
+        portRange:
+          start: 2123
+          end: 2130
+        basePath: /tmp/webconsole
+        port: 2122
+        cert:
+          pem: cert/chf.pem
+          key: cert/chf.key
         
     logger:
-      WEBUI:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false

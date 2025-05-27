@@ -4,12 +4,12 @@ kind: ConfigMap
 metadata:
   name: pcf-configmap
   labels:
-    app.kubernetes.io/version: "v3.2.1"
+    app.kubernetes.io/version: "v4.0.1"
     app: free5gc
 data:
   pcfcfg.yaml: |
     info:
-      version: 1.0.1
+      version: 1.0.2
       description: PCF initial local configuration
 
     configuration:
@@ -29,8 +29,8 @@ data:
         bindingIPv4: 0.0.0.0    # IP used to bind the service
         port: 80
         tls:
-          key: config/TLS/pcf.key
-          pem: config/TLS/pcf.pem
+          key: config/pcf.key
+          pem: config/pcf.pem
       
       mongodb:       # the mongodb connected by this PCF
         name: free5gc                  # name of the mongodb
@@ -43,6 +43,6 @@ data:
       locality: area1
 
     logger:
-      PCF:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false

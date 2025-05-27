@@ -3,12 +3,12 @@ kind: ConfigMap
 metadata:
   name: nssf-configmap
   labels:
-    app.kubernetes.io/version: "v3.2.1"
+    app.kubernetes.io/version: "v4.0.1"
     app: free5gc
 data:
   nssfcfg.yaml: |
     info:
-      version: 1.0.1
+      version: 1.0.2
       description: NSSF initial local configuration
 
     configuration:
@@ -22,10 +22,11 @@ data:
         bindingIPv4: 0.0.0.0      # IP used to bind the service
         port: 80
         tls:
-          key: config/TLS/nssf.key
-          pem: config/TLS/nssf.pem
+          key: config/nssf.key
+          pem: config/nssf.pem
       
       nrfUri: http://nrf-nnrf:8000
+      nrfCertPem: cert/nrf.pem
       
       nsiList:
         - snssai:
@@ -372,6 +373,6 @@ data:
                 sd: 3      
 
     logger:
-      NSSF:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false
